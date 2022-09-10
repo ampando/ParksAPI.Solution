@@ -33,9 +33,9 @@ As a user, I want to GET and POST state and national parks. As a user, I want to
 
 ## HTTP Request
 `POST /api/parks
-`GET /api/parks/{id}
-`PUT /api/parks/{id}
-`DELETE /api/parks/{id}
+ GET /api/parks/{id}
+ PUT /api/parks/{id}
+ DELETE /api/parks/{id}'
 
 
 ## Example Query
@@ -47,7 +47,7 @@ As a user, I want to GET and POST state and national parks. As a user, I want to
   "name": "Bridal Veil Falls",
   "state": "Oregon",
   "type": "state",
-}
+}`
 
 ## Getting Started with Swagger
 [Swagger](https://swagger.io/), also known as [OpenAPI](https://www.openapis.org/), solves the problem of generating useful documentation and help pages for Web APIs. It provides benefits such as interactive documentation, client SDK generation, and API discoverability.
@@ -55,7 +55,7 @@ As a user, I want to GET and POST state and national parks. As a user, I want to
 
 ## Swagger Implementation with Swashbuckle
  Swashbuckle is a Swagger generator that builds SwaggerDocument objects directly from your routes, controllers, and models. It's typically combined with the Swagger endpoint middleware to automatically expose Swagger JSON.
- Install `dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.2.3` to begin the process of setting up Swagger. 
+ Install `dotnet add <ParksApi>.csproj package Swashbuckle.AspNetCore -v 6.2.3` to begin the process of setting up Swagger. 
 
 ## Add and configure Swagger middleware
 
