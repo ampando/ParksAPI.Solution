@@ -49,8 +49,55 @@ As a user, I want to GET and POST state and national parks. As a user, I want to
   "type": "state",
 }
 
-## Swagger Implementation
+## Getting Started with Swagger
+[Swagger](https://swagger.io/), also known as [OpenAPI](https://www.openapis.org/), solves the problem of generating useful documentation and help pages for Web APIs. It provides benefits such as interactive documentation, client SDK generation, and API discoverability.
 
+
+## Swagger Implementation with Swashbuckle
+ Swashbuckle is a Swagger generator that builds SwaggerDocument objects directly from your routes, controllers, and models. It's typically combined with the Swagger endpoint middleware to automatically expose Swagger JSON.
+ Install `dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.2.3` to begin the process of setting up Swagger. 
+
+## Add and configure Swagger middleware
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext<TodoContext>(opt =>
+        opt.UseInMemoryDatabase("TodoList"));
+    services.AddControllers();
+
+    // Register the Swagger generator, defining 1 or more Swagger documents
+    services.AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+    });
+}
+```
+In the `Startup.Configure` method, enable the middleware for serving the generated JSON document and the Swagger UI:
+
+```csharp
+public void Configure(IApplicationBuilder app)
+{
+    // Enable middleware to serve generated Swagger as a JSON endpoint.
+    app.UseSwagger();
+
+    // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+    // specifying the Swagger JSON endpoint.
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); 
+    });
+
+    app.UseRouting();
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllers();
+    });
+}
+```
+Launch the Swagger app, and navigate to `http://localhost:<yourport>/swagger/v1/swagger.json`. The generated document describing the endpoints appears as shown in [Swagger specification (swagger.json)](https://docs.microsoft.com/aspnet/core/tutorials/web-api-help-pages-using-swagger#swagger-specification-swaggerjson).
+
+The Swagger UI can be found at `http://localhost:<yourport>/swagger`. Explore the API via Swagger UI and incorporate it in other programs.
 
 
 ## appsettings.json
@@ -71,11 +118,12 @@ user:root and an [empty password].
 3. Commit your .gitignore file.
 
 ## Stretch Goals
+* CLient Side API
 * Authentication with Identity
 * Search functionality
 
 ## Known Bugs
-No known bugs at this time. 
+WIP progress for the client side API. 
 
 ## Support and Contact Details
 
