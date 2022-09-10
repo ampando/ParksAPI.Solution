@@ -35,7 +35,7 @@ As a user, I want to GET and POST state and national parks. As a user, I want to
 `POST /api/parks
  GET /api/parks/{id}
  PUT /api/parks/{id}
- DELETE /api/parks/{id}'
+ DELETE /api/parks/{id}`
 
 
 ## Example Query
@@ -139,6 +139,8 @@ If there are any issues or questions, please reach out to me through [my GitHub 
 *  [Entity FrameWork](https://docs.microsoft.com/en-us/ef/)
 * [Postman](https://www.postman.com/)
 * [SQL/MySqlWorkbench](https://www.mysql.com/products/workbench/)
+* [Swagger](https://swagger.io/tools/swaggerhub/?&utm_source=aw&utm_medium=ppcg&utm_campaign=SEM_SwaggerHub_PR_NA_ENG_EXT_Prospecting&utm_term=swagger&utm_content=511173019809&gclid=Cj0KCQjw6_CYBhDjARIsABnuSzqhk832OxfUnJQrObnkOSGeOz5PDaFWhbXwfR2RwtueOlioKgGBz_8aAnoKEALw_wcB&gclsrc=aw.ds)
+* [Swashbuckle](https://www.c-sharpcorner.com/article/swashbuckle-and-asp-net-core/) 
 
 
 ### License
