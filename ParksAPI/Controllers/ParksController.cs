@@ -53,7 +53,8 @@ namespace ParksAPI.Controllers
     ///     {
     ///        "id": 1,
     ///        "name": "Yellowstone",
-    ///        "state": "Montana"
+    ///        "state": "Montana",
+    ///        "type": "National"
     ///     }
     ///
     /// </remarks>

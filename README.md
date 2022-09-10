@@ -52,6 +52,7 @@ As a user, I want to GET and POST state and national parks. As a user, I want to
 ## Swagger Implementation
 
 
+
 ## appsettings.json
 
 Update your username and password in the appsettings.json file. By default these are set to:

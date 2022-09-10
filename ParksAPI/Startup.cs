@@ -44,6 +44,11 @@ namespace ParksAPI
                     
                     Name = "Adrienne Matosich",
                     Email = "amatosich@gmail.com",
+                },
+                License = new OpenApiLicense
+                {
+                    Name = "Example License",
+                    Url = new Uri("https://example.com/license"),
                 }  
             });
             
