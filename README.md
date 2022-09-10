@@ -32,10 +32,10 @@ As a user, I want to GET and POST state and national parks. As a user, I want to
 ## Parks
 
 ## HTTP Request
-`POST /api/parks
- GET /api/parks/{id}
- PUT /api/parks/{id}
- DELETE /api/parks/{id}`
+`POST: /api/parks -
+ GET: /api/parks/{id} -
+ PUT: /api/parks/{id} -
+ DELETE: /api/parks/{id}`
 
 
 ## Example Query
