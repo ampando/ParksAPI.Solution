@@ -9,6 +9,7 @@ using ParksAPI.Models;
 
 namespace ParksAPI.Controllers
 {
+    [Route("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class ParksController : ControllerBase
@@ -19,24 +20,74 @@ namespace ParksAPI.Controllers
     {
         _db = db;
     }
-
-    // GET api/animals -- Our GET route needs to return an ActionResult of type <IEnumerable<Animal>>. In our web applications, we didn't need to specify a type because we were always returning a view.
+    
+    /// <summary>
+    /// Park List
+    /// </summary>
+    /// <remarks>
+    ///
+    /// Sample request:
+    /// GET /api/parks
+    ///     
+    /// </remarks>
+    /// 
+    /// <returns>Park List</returns>
+    /// <response code="200">Returns Park List</response>
+    /// <response code="400">If the park is null</response> 
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesDefaultResponseType]
+    
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Park>>> Get()
     {
         return await _db.Parks.ToListAsync();
     }
 
-    // POST api/animals -- Our POST route utilizes the function CreatedAtAction. This is so that it can end up returning the Animal object to the user, as well as update the status code to 201, for "Created", rather than the default 200 OK.
+    /// <summary>
+    /// Creates Park.
+    /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /Park
+    ///     {
+    ///        "id": 1,
+    ///        "name": "Yellowstone",
+    ///        "state": "Montana"
+    ///     }
+    ///
+    /// </remarks>
+    /// 
+    /// <returns>A newly created park</returns>
+    /// <response code="201">Returns the newly created park</response>
+    /// <response code="400">If the park is null</response> 
+    
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<Park>> Post(Park park)
     {
         _db.Parks.Add(park);
         await _db.SaveChangesAsync();
 
-        return CreatedAtAction("Post", new { id = park.ParkId }, park);
+        return CreatedAtAction(nameof(GetPark), new { id = park.ParkId }, park);
     }
-    // GET: api/Animals/5
+    
+    /// <summary>
+    /// Update Park 
+    /// </summary>
+    /// <remarks>
+    ///
+    /// Sample request:
+    /// DELETE /api/parks/1 
+    ///     
+    /// </remarks>
+    /// 
+    /// <returns>Delete park in API</returns>
+    /// <response code="201">Park Deleted Successfully</response>
+    /// <response code="400">If the park is null</response> 
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesDefaultResponseType]
     [HttpGet("{id}")]
     public async Task<ActionResult<Park>> GetPark(int id)
     {
@@ -49,7 +100,20 @@ namespace ParksAPI.Controllers
 
         return park;
     }
-    [HttpDelete("{id}")]//Ultimately, the main difference between update and delete methods in a web application versus an API is the annotation. Remember that forms in HTML5 don't allow for PUT, PATCH or DELETE verbs.
+    
+    /// <summary>
+    /// Delete Park 
+    /// </summary>
+    /// <remarks>
+    ///
+    /// 
+    ///     
+    /// </remarks>
+    /// 
+    /// <returns>Park List</returns>
+    /// <response code="201">Park Updated successfully</response>
+    /// <response code="400">If the park is null</response>    
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
         var park = await _db.Parks.FindAsync(id);
@@ -62,6 +126,11 @@ namespace ParksAPI.Controllers
         await _db.SaveChangesAsync();
 
         return NoContent();
+    }
+
+    private bool ParkExists(int id)
+    {
+        return _db.Parks.Any(e => e.ParkId == id);
         }
     }
 }
