@@ -37,9 +37,16 @@ As a user, I want to GET and POST state and national parks. As a user, I want to
  PUT: /api/parks/{id} -
  DELETE: /api/parks/{id}`
 
+### Path Parameters
+
+| Parameter     | Type      | Default  | Required  | Description                |
+| ------------- | --------- | -------- | ----------|-----------------           |
+|   state       | string    | none     | false     | Return matches by state    |
+|   type        | string    | national, state    | false     | Return matches by type   |
 
 ## Example Query
 `http://localhost:5000/api/parks?state=Oregon&type=state`
+
 
 ## Sample JSON Response
 `{
